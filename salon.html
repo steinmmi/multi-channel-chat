@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{salon['name']}}</title>
+</head>
+<body>
+    <h1>{{salon['name']}}</h1>
+    <input id="message" type="text">
+    <button onclick="sendMsg()">Valider</button>
+    <div id="chat"></div>
+    <script>
+        message = document.getElementById('message')
+        chat = document.getElementById('chat')
+        var ws = new WebSocket("ws://"+location.host+"/socket/"+{{salon['id']}});
+        function sendMsg() {
+            ws.send(message.value);
+        }
+        ws.onmessage = function (evt) {
+            msgCont = document.createElement('p')
+            msgCont.innerHTML = evt.data
+            chat.append(msgCont)
+        };
+
+    </script>
+</body>
+</html>
