@@ -1,2 +1,8 @@
 # multi-channel-chat
-Python server for multi-channel chat using Tornado
+## Using Tornado
+```
+pip install tornado
+python app.js
+```
+
+Use port __8888__
