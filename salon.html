@@ -16,7 +16,7 @@
         chat = document.getElementById('chat')
         var ws = new WebSocket("ws://"+location.host+"/socket/"+{{salon['id']}});
         function sendMsg() {
-            ws.send(message.value);
+            ws.send(JSON.stringify({"type":"message","data":message.value}));
         }
         ws.onmessage = function (evt) {
             msgCont = document.createElement('p')

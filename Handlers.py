@@ -1,5 +1,6 @@
 import tornado
 import tornado.websocket
+import json
 
 clients = []
 salons = {}
@@ -29,8 +30,9 @@ class Socket(tornado.websocket.WebSocketHandler):
         salons[self.salonId]['users'].append(self)
 
     def on_message(self, message):
+        data = json.loads(message)
         for client in salons[self.salonId]['users']:
-            client.write_message(message)
+            client.write_message(data['data'])
 
     def on_close(self):
         print(self.salonId)
