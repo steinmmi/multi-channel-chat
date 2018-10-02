@@ -8,7 +8,7 @@ salons[1] = {'name':"Salon 1", 'users': [], 'id':1}
 salons[22] = {'name':"Salon 22", 'users': [], 'id':22}
 class Index(tornado.web.RequestHandler):
     def get(self):
-        self.render("index.html", title = "Yes")
+        self.render("static/index.html",salons = salons)
         
     def post(self):
         for arg in self.request.arguments:
